@@ -16,10 +16,10 @@
     --sidebar-bg: #1a1a2e;
     --sidebar-text: #c8c4d4;
     --sidebar-active: #e8b4d0;
-    --sidebar-hover: rgba(232,180,208,0.15);
+    --sidebar-hover: rgba(140, 205, 240, 0.15);
     --text: #070708;
     --text2: #4a4a6a;
-    --text3: #7a7a9a;
+    --text3: #7a7a9a; 
     --accent: #030303;
     --accent2: #7b4f9e;
     --accent3: #1e78e6;
@@ -257,38 +257,86 @@
   /* ── HERO ── */
   #hero {
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: center;
     min-height: 100vh;
-    padding: 80px 64px;
+    padding: 40px 20px;
     position: relative;
     overflow: hidden;
+    background-color: #ffffff;
+    background-image: url('bg_image.jpg');
+    background-position: center top;
+    background-repeat: no-repeat;
   }
 
-  .hero-bg-shape {
+  .hero-overlay {
     position: absolute;
-    top: -100px;
-    right: -100px;
-    width: 500px;
-    height: 500px;
+    inset: 0;
+    background: rgba(238, 237, 244, 0.393);
+    z-index: 1;
+  }
+
+  .hero-card {
+    position: relative;
+    z-index: 2;
+    background: rgba(13, 9, 29, 0.78);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.13);
+    border-radius: 24px;
+    padding: 52px 56px;
+    max-width: 720px;
+    width: 92%;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.07);
+    text-align: center;
+    animation: cardReveal 0.7s cubic-bezier(0.22,1,0.36,1) both;
+  }
+
+  @keyframes cardReveal {
+    from { opacity: 0; transform: translateY(28px) scale(0.96); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .hero-card-avatar {
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(192,67,122,0.08) 0%, transparent 70%);
-    pointer-events: none;
+    margin: 0 auto 20px;
+    border: 3px solid rgba(232,100,154,0.9);
+    overflow: hidden;
+    background: linear-gradient(135deg, #c0437a, #7b4f9e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    color: rgba(255,255,255,0.6);
+    font-family: 'DM Serif Display', serif;
+    position: relative;
+    box-shadow: 0 0 0 5px rgba(192,67,122,0.18), 0 8px 24px rgba(0,0,0,0.4);
+  }
+
+  .hero-card-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    position: absolute;
+    top: 0; left: 0;
+    border-radius: 50%;
   }
 
   .hero-badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: var(--bg3);
-    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
     border-radius: 30px;
-    padding: 6px 16px;
-    font-size: 12px;
+    padding: 5px 16px;
+    font-size: 11.5px;
     font-weight: 500;
-    color: var(--text2);
-    margin-bottom: 28px;
-    width: fit-content;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 18px;
   }
 
   .status-dot {
@@ -297,6 +345,7 @@
     background: #22c55e;
     border-radius: 50%;
     animation: pulse 2s infinite;
+    flex-shrink: 0;
   }
 
   @keyframes pulse {
@@ -304,60 +353,48 @@
     50% { opacity: 0.4; }
   }
 
-  .hero-greeting {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    color: var(--accent);
-    letter-spacing: 2px;
-    text-transform: uppercase;
+  .hero-card h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(34px, 4vw, 50px);
+    color: #ffffff;
+    line-height: 1.1;
     margin-bottom: 14px;
   }
 
-  .hero-name {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(44px, 6vw, 72px);
-    line-height: 1.05;
-    color: var(--text);
-    margin-bottom: 8px;
-  }
-
-  .hero-name span {
-    color: var(--accent);
-    font-style: italic;
-  }
+  .hero-card h1 span { color: #e8649a; font-style: italic; }
 
   .hero-tagline {
-    font-size: 18px;
-    font-weight: 400;
-    color: var(--text2);
-    margin-bottom: 28px;
-    max-width: 580px;
-    line-height: 1.6;
+    font-size: 15px;
+    color: rgba(255,255,255,0.68);
+    line-height: 1.7;
+    margin-bottom: 18px;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .hero-type-wrap {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 26px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 36px;
-    font-size: 16px;
-    color: var(--text2);
+    justify-content: center;
+    gap: 8px;
   }
 
-  .type-prefix { font-weight: 300; }
-
   #typed-text {
-    color: var(--accent2);
-    font-weight: 500;
+    color: #14a8f1;
     font-family: 'DM Mono', monospace;
-    font-size: 15px;
+    font-size: 13.5px;
+    font-weight: 500;
   }
 
   .cursor {
     display: inline-block;
     width: 2px;
-    height: 18px;
-    background: var(--accent2);
+    height: 16px;
+    background: #14a8f1;
     margin-left: 2px;
     animation: blink 0.8s infinite;
     vertical-align: middle;
@@ -370,84 +407,85 @@
 
   .hero-stats {
     display: flex;
-    gap: 32px;
-    margin-bottom: 40px;
+    justify-content: center;
+    gap: 28px;
+    margin-bottom: 28px;
     flex-wrap: wrap;
+    padding: 18px 0;
+    border-top: 1px solid rgba(255,255,255,0.09);
+    border-bottom: 1px solid rgba(255,255,255,0.09);
   }
 
-  .stat {
-    text-align: left;
-  }
+  .stat { text-align: center; }
 
   .stat-num {
     font-family: 'DM Serif Display', serif;
-    font-size: 32px;
-    color: var(--text);
+    font-size: 26px;
+    color: #ffffff;
     line-height: 1;
   }
 
-  .stat-num span {
-    color: var(--accent);
-  }
+  .stat-num span { color: #47adec; }
 
   .stat-label {
-    font-size: 12px;
-    color: var(--text3);
+    font-size: 11px;
+    color: rgba(255,255,255,0.48);
     margin-top: 3px;
-    font-weight: 400;
   }
 
   .hero-cta {
     display: flex;
-    gap: 14px;
+    gap: 10px;
     flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 22px;
   }
 
   .btn-primary {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 13px 28px;
-    background: var(--accent);
+    padding: 11px 22px;
+    background: #43abe2;
     color: #fff;
     border-radius: 10px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     text-decoration: none;
     border: none;
     cursor: pointer;
     transition: all 0.2s;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
   }
 
   .btn-primary:hover {
     background: #a83568;
-    transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(192,67,122,0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(192,67,122,0.45);
   }
 
-  .btn-outline {
+  .btn-ghost {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 13px 28px;
-    background: transparent;
-    color: var(--text);
+    padding: 11px 22px;
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.85);
     border-radius: 10px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     text-decoration: none;
-    border: 1.5px solid var(--border);
+    border: 1px solid rgba(255,255,255,0.18);
     cursor: pointer;
     transition: all 0.2s;
   }
 
-  .btn-outline:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    transform: translateY(-1px);
+  .btn-ghost:hover {
+    background: rgba(255,255,255,0.16);
+    transform: translateY(-2px);
+    color: #fff;
+    border-color: rgba(255,255,255,0.3);
   }
-
   /* ── SECTION HEADERS ── */
   .section-header {
     margin-bottom: 48px;
@@ -1408,8 +1446,8 @@
   </div>
 
   <div class="sidebar-nav">
-    <div class="nav-label">Navigation</div>
-    <a class="nav-item active" href="#hero" onclick="scrollTo('hero')">
+    <div class="nav-label"></div> 
+    <a class="nav-item active" href="#hero" onclick="scrollTo('hero')"> 
       <i class="fas fa-home"></i> Home
     </a>
     <a class="nav-item" href="#about" onclick="scrollTo('about')">
@@ -1461,58 +1499,59 @@
 <!-- MAIN CONTENT -->
 <main id="main">
 
-  <!-- ══════════════════ HERO ══════════════════ -->
-  <section class="section" id="hero">
-    <div class="hero-bg-shape"></div>
+    <section id="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-card">
 
-    <div class="hero-badge">
-      <span class="status-dot"></span>
-      Open to opportunities · Dublin, Ireland
-    </div>
+      
 
-    <div class="hero-greeting">Hello, I'm</div>
-    <h1 class="hero-name">
-      Dhakshayini Janardhan</span>
-    </h1>
-
-    <p class="hero-tagline">
-      Software Development Engineer & AI Researcher building intelligent, scalable systems that bridge the gap between cutting-edge AI and real-world production software.
-    </p>
-
-    <div class="hero-type-wrap">
-      <span class="type-prefix">I build</span>
-      <span id="typed-text"></span><span class="cursor"></span>
-    </div>
-
-    <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-num">4<span>+</span></div>
-        <div class="stat-label">Years Experience</div>
+      <div class="hero-badge">
+        <span class="status-dot"></span>
+        Open to opportunities · Dublin, Ireland
       </div>
-      <div class="stat">
-        <div class="stat-num">2<span>M+</span></div>
-        <div class="stat-label">Users Impacted</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">70<span>+</span></div>
-        <div class="stat-label">Clients Served</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">5<span>+</span></div>
-        <div class="stat-label">AI Projects</div>
-      </div>
-    </div>
 
-    <div class="hero-cta">
-      <a href="Dhakshayini_Resume.pdf" class="btn-primary" target="_blank">
-        <i class="fas fa-download"></i> Download CV
-      </a>
-      <a href="#projects" class="btn-outline" onclick="scrollTo('projects'); return false;">
-        <i class="fas fa-folder"></i> View Projects
-      </a>
-      <a href="#contact" class="btn-outline" onclick="scrollTo('contact'); return false;">
-        <i class="fas fa-paper-plane"></i> Contact Me
-      </a>
+      <h1>Dhakshayini Janardhan</h1>
+
+      <p class="hero-tagline">
+        Software Development Engineer &amp; AI Researcher building intelligent, scalable systems that bridge the gap between cutting-edge AI and real-world production software.
+      </p>
+
+      <div class="hero-type-wrap">
+        <span style="font-weight:300;">I build</span>
+        <span id="typed-text"></span><span class="cursor"></span>
+      </div>
+
+     <!-- <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">4<span>+</span></div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">2<span>M+</span></div>
+          <div class="stat-label">Users Impacted</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">70<span>+</span></div>
+          <div class="stat-label">Clients Served</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">5<span>+</span></div>
+          <div class="stat-label">AI Projects</div>
+        </div>
+      </div> -->
+
+      <div class="hero-cta">
+        <a href="Dhakshayini_Resume.pdf" class="btn-primary" target="_blank">
+          <i class="fas fa-download"></i> Download CV
+        </a>
+        <a href="#projects" class="btn-ghost" onclick="navClick('projects'); return false;">
+          <i class="fas fa-folder"></i> View Projects
+        </a>
+        <a href="#contact" class="btn-ghost" onclick="navClick('contact'); return false;">
+          <i class="fas fa-paper-plane"></i> Contact Me
+        </a>
+      </div>
+
     </div>
   </section>
 
@@ -1520,7 +1559,7 @@
  <section class="section" id="about"> 
     <div class="section-header">
      <!-- <div class="section-eyebrow">01 // About Me</div> -->
-      <h2 class="section-title">Engineer. Researcher.<br>Problem Solver.</h2>
+      <h2 class="section-title">Software Engineer. Researcher.<br>AI Architect.</h2>
     </div>
 
     <div class="about-grid">
@@ -1797,8 +1836,8 @@
             <div class="edu-card-top">
               <div class="edu-icon icon-blue"><i class="fas fa-laptop-code"></i></div>
               <div>
-                <h3>B.E. Computer Science and Engineering</h3>
-                <div class="edu-inst">VTU, Bangalore, India</div>
+                <h3>Bachelor of Engineering</h3>
+                <div class="edu-inst">Malnad College of Engineering, Hassan, India</div>
               </div>
             </div>
             <div class="edu-date">2017 – 2021</div>
@@ -1815,43 +1854,45 @@
           <div class="cert-card">
             <div class="cert-icon"><i class="fas fa-microchip"></i></div>
             <div>
-              <h4>Deep Learning Fundamentals</h4>
-              <p>NVIDIA DLI · 2024</p>
+              <h4>Fundamentals of Deep Learning</h4>
+              <p>Credential ID: FbHAcK5AT9Ch4L2F8yZ64w</p>
+        
+              <p>NVIDIA · 2026</p>
             </div>
           </div>
           <div class="cert-card">
             <div class="cert-icon"><i class="fab fa-aws"></i></div>
             <div>
-              <h4>ML for NLP Tasks</h4>
-              <p>AWS · 2024</p>
+              <h4>AWS Academy Graduate: Machine Learning for Natural Language Processing</h4>
+              <p>AWS · 2025</p>
             </div>
           </div>
           <div class="cert-card">
             <div class="cert-icon"><i class="fas fa-brain"></i></div>
             <div>
-              <h4>Deep Learning Specialisation</h4>
-              <p>Coursera · Andrew Ng</p>
+              <h4>Master Spring Boot 3 & Spring Framework 6 with Java</h4>
+              <p>Coursera · 2021</p>
             </div>
           </div>
           <div class="cert-card">
             <div class="cert-icon"><i class="fas fa-robot"></i></div>
             <div>
-              <h4>ML Specialisation</h4>
-              <p>Coursera · Andrew Ng</p>
+              <h4>Angular – The Complete Guide (2023 Edition)</h4>
+              <p>Udemy · 2023</p>
             </div>
           </div>
           <div class="cert-card">
             <div class="cert-icon"><i class="fab fa-java"></i></div>
             <div>
-              <h4>Java & Spring Boot</h4>
-              <p>Udemy · 2022</p>
+              <h4>JProgramming in Python</h4>
+              <p>Meta · 2024</p>
             </div>
           </div>
           <div class="cert-card">
             <div class="cert-icon"><i class="fab fa-angular"></i></div>
             <div>
-              <h4>Angular Development</h4>
-              <p>Udemy · 2022</p>
+              <h4>AProgramming in Java</h4>
+              <p>LearnQuest · 2024</p>
             </div>
           </div>
         </div>
@@ -1882,8 +1923,8 @@
         <div class="achieve-card fade-in">
           <div class="achieve-icon icon-blue"><i class="fas fa-users-cog"></i></div>
           <div>
-            <h4>IEEE Chapter Chair — TU Dublin</h4>
-            <p>Organised 5+ tech talks and workshops for TU Dublin's IEEE student chapter</p>
+            <h4>IEEE Chapter Chair - Malnad College of Engineering</h4>
+            <p>Organised 5+ tech talks, IEEE Open Day events and workshops for Malnad College of Engineering's IEEE student chapter</p>
           </div>
         </div>
         <div class="achieve-card fade-in">
@@ -1903,8 +1944,8 @@
         <div class="achieve-card fade-in">
           <div class="achieve-icon icon-purple"><i class="fas fa-chalkboard-teacher"></i></div>
           <div>
-            <h4>Tech Talk Speaker — TU Dublin AI Society</h4>
-            <p>Delivered talk on Responsible AI and EU AI Act compliance for student society</p>
+            <h4>Runner Up - Youth Talk </h4>
+            <p>Won second place at Inter-college Youth Talk competition during Bachelors degree organized by IIC (Institution Innovation Council)</p>
           </div>
         </div>
       </div>
